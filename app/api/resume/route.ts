@@ -10,7 +10,7 @@ export const runtime = 'edge';
  
 export async function POST(req: Request) {
   const { prompt } = await req.json();
-  const response = await mistral.chatStream({
+  const response = await mistral.chat({
     model: 'mistral-large-latest',
     messages: [{ 
       role: 'user',
@@ -50,7 +50,7 @@ OUTPUT FORMAT:
 </Improvements>`
     }],
   });
- 
+  return Response.json(response);
   const stream = MistralStream(response);
  
   return new StreamingTextResponse(stream);
