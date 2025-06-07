@@ -2,7 +2,7 @@ import type React from "react"
 import { UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs/server"
 
 export default function DashboardLayout({
   children,
