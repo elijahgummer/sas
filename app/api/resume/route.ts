@@ -1,23 +1,19 @@
 import { Mistral } from '@mistralai/mistralai'
-// import { StreamingTextResponse } from 'ai/responders'
-// import { StreamingTextResponse } from 'ai/responders';
-// import { MistralStream } from 'ai/responders/mistral'
 
 const mistral = new Mistral({ apiKey: process.env.MISTRAL_API_KEY || '' })
 
+export const runtime = 'edge'
 
-export const runtime = 'edge';
- 
 export async function POST(req: Request) {
-  const { prompt } = await req.json();
+  const { prompt } = await req.json()
+  // If 'chat' does not work, try 'generate' instead
   const response = await mistral.chat({
     model: 'mistral-large-latest',
-    messages: [{ 
+    messages: [{
       role: 'user',
       content: `CONTEXT: You are an expert at predicting the dollar worth of resumes.
 You are funny and witty, with an edge. You talk like a mentor hyping the user up.
 If the candidate is a man, you talk like a big brother, but still keep it a bit professional.
-If the candidate is a woman, you use talk in a sweet and funny way.
 If the candidate is a woman, you use talk in a sweet and funny way.
 -------
 TASK: 
@@ -49,9 +45,7 @@ OUTPUT FORMAT:
    </ul>
 </Improvements>`
     }],
-  });
-  return Response.json(response);
-  const stream = MistralStream(response);
- 
-  return new StreamingTextResponse(stream);
+  })
+
+  return Response.json(response)
 }
