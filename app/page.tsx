@@ -38,7 +38,7 @@ import { ResumeBuilder } from "@/components/resume-builder"
 import { ChatSupport } from "@/components/chat-support"
 import { SkillsAssessment } from "@/components/skills-assessment"
 import { NotificationBell } from "@/components/notification-bell"
-import ResumeAnalyzerApp from './components/ResumeAnalyzerApp';
+import ResumeAnalyzerApp from '../components/ResumeAnalyzerApp';
 
 const FadeInWhenVisible = ({ children, className = "", delay = 0 }) => {
   const [ref, inView] = useInView({
