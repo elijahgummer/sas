@@ -38,6 +38,7 @@ import { ResumeBuilder } from "@/components/resume-builder"
 import { ChatSupport } from "@/components/chat-support"
 import { SkillsAssessment } from "@/components/skills-assessment"
 import { NotificationBell } from "@/components/notification-bell"
+import ResumeAnalyzerApp from './components/ResumeAnalyzerApp';
 
 const FadeInWhenVisible = ({ children, className = "", delay = 0 }) => {
   const [ref, inView] = useInView({
@@ -272,6 +273,7 @@ export default function LandingPage() {
                   <Sparkles className="h-3.5 w-3.5 mr-1.5" />
                   <span>AI-Powered Resume Analysis</span>
                 </div>
+                <ResumeAnalyzerApp />   
 
                 <div className="space-y-4">
                   <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-gray-900 dark:text-white">
