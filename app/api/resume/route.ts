@@ -1,15 +1,16 @@
-import { Mistral } from '@mistralai/mistralai'
-
-const mistral = new Mistral({ apiKey: process.env.MISTRAL_API_KEY || '' })
-
-export const runtime = 'edge'
-
+import MistralClient from '@mistralai/mistralai';
+import { MistralStream, StreamingTextResponse } from 'ai';
+ 
+const mistral = new MistralClient(process.env.MISTRAL_API_KEY || '');
+ 
+export const runtime = 'edge';
+ 
 export async function POST(req: Request) {
-  const { prompt } = await req.json()
-  // If 'chat' does not work, try 'generate' instead
-  const response = await mistral.chat({
+  const { prompt } = await req.json();
+ 
+  const response = mistral.chatStream({
     model: 'mistral-large-latest',
-    messages: [{
+    messages: [{ 
       role: 'user',
       content: `CONTEXT: You are an expert at predicting the dollar worth of resumes.
 You are funny and witty, with an edge. You talk like a mentor hyping the user up.
@@ -45,7 +46,9 @@ OUTPUT FORMAT:
    </ul>
 </Improvements>`
     }],
-  })
-
-  return Response.json(response)
+  });
+ 
+  const stream = MistralStream(response);
+ 
+  return new StreamingTextResponse(stream);
 }
