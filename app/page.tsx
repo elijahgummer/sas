@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <ResumeAnalyzerApp />
-      <Hero resumeScore={0} />
+      <Hero resumeScore={85} />
     </>
   ) 
 }
