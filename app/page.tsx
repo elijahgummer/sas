@@ -296,7 +296,7 @@ export default function LandingPage() {
 
                 <div className="space-y-4">
                   <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-gray-900 dark:text-white">
-                    Discover Your Resume's{" "}
+                    Discover Your Resume&#39;s{" "}
                     <span className="gradient-text">True Value</span>
                   </h1>
                   <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
@@ -755,7 +755,7 @@ export default function LandingPage() {
                             Resume Worth Score
                           </CardTitle>
                           <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                            Get a detailed breakdown of your resume's market
+                            Get a detailed breakdown of your resume&#39;s market
                             value based on experience, skills, and education.
                           </CardDescription>
                         </CardHeader>
@@ -794,7 +794,7 @@ export default function LandingPage() {
                           </CardTitle>
                           <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
                             Receive tailored recommendations to enhance your
-                            resume's impact and appeal to hiring managers.
+                            resume&#39;s impact and appeal to hiring managers.
                           </CardDescription>
                         </CardHeader>
                       </Card>
@@ -942,7 +942,7 @@ export default function LandingPage() {
                 <span>Simple Pricing</span>
               </div>
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-gray-900 dark:text-white">
-                Choose the plan that's right for you
+                Choose the plan that&#39;s right for you
               </h2>
               <p className="max-w-[800px] text-gray-600 dark:text-gray-300 md:text-lg">
                 All plans include a free resume analysis to get you started
@@ -1149,7 +1149,7 @@ export default function LandingPage() {
               <FadeInWhenVisible className="relative z-10 flex flex-col items-center justify-center space-y-6 text-center">
                 <div className="space-y-4">
                   <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-gray-900 dark:text-white">
-                    Ready to discover your resume's true value?
+                    Ready to discover your resume&#39;s true value?
                   </h2>
                   <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl">
                     Join thousands of professionals who have improved their
