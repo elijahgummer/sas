@@ -26,6 +26,7 @@
     "cal-sans": "^1.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "embla-carousel-react": "^8.6.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "formidable": "^3.5.1",
