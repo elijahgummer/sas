@@ -49,7 +49,7 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
       const duration = 1000 // ms
       const startTime = performance.now()
 
-      function animate(now: number) {
+      const animate = (now: number) => {
         const elapsed = now - startTime
         const progress = Math.min(elapsed / duration, 1)
         const value = Math.round(progress * resumeScore)
