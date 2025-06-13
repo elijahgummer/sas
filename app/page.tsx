@@ -5,7 +5,7 @@ import ResumeAnalyzerApp from "./components/ResumeAnalyzerApp";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "./components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,8 +13,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "./components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import {
   Check,
   ChevronRight,
@@ -42,11 +42,11 @@ import {
 } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "next-themes";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { ResumeBuilder } from "@/components/resume-builder";
-import { ChatSupport } from "@/components/chat-support";
-import { SkillsAssessment } from "@/components/skills-assessment";
-import { NotificationBell } from "@/components/notification-bell";
+import { ThemeToggle } from "./components/theme-toggle";
+import { ResumeBuilder } from "./components/resume-builder";
+import { ChatSupport } from "./components/chat-support";
+import { SkillsAssessment } from "./components/skills-assessment";
+import { NotificationBell } from "./components/notification-bell";
 
 const FadeInWhenVisible = ({ children, className = "", delay = 0 }) => {
   const [ref, inView] = useInView({
