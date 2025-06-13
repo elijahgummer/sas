@@ -550,12 +550,12 @@ export default function LandingPage() {
             </FadeInWhenVisible>
 
             <div className="grid gap-12 lg:grid-cols-2 items-center">
-              <FadeInWhenVisible
-                className="relative"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-purple-100 dark:border-purple-800">
+              <FadeInWhenVisible className="relative">
+                <div
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-purple-100 dark:border-purple-800"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
                   <div className="p-6 bg-gradient-to-r from-purple-50 to-white dark:from-purple-900/20 dark:to-gray-800 border-b border-purple-100 dark:border-purple-800">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
                       AI-Powered Features
