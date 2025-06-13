@@ -157,8 +157,6 @@ export function SkillsAssessment() {
             <h3 className="text-xl font-bold text-gray-900">Assessment Complete!</h3>
             <p className="text-gray-600 mt-1">Here&#39;s your personalized skill analysis</p>
           </div>
-
-
           <Tabs defaultValue="summary" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="summary">Skills Summary</TabsTrigger>
