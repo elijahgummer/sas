@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../components/ui/button"
 import { MessageCircle, X, Send, User, Bot } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { Input } from "../components/ui/input"
 
 export function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false)

@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Button } from "../components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "../components/ui/card"
 import { FileText, Plus, Briefcase, GraduationCap, Award, Download, Settings } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Input } from "../components/ui/input"
+import { Textarea } from "../components/ui/textarea"
 
 export function ResumeBuilder() {
   const [activeSection, setActiveSection] = useState("personal")
