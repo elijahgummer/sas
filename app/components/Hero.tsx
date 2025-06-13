@@ -4,8 +4,6 @@ import { Button } from "./ui/button"
 import { ChevronRight, ArrowRight, FileText, Sparkles } from "lucide-react"
 import Image from "next/image"
 import { useInView } from "react-intersection-observer"
-
-
 import React from "react"
 
 const FadeInWhenVisible = ({
@@ -35,23 +33,45 @@ const FadeInWhenVisible = ({
   )
 }
 
-
 interface HeroProps {
   resumeScore: number
   resumeScoreRef?: React.RefObject<HTMLSpanElement>
 }
 
 export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
+  // Animated score state
+  const [displayedScore, setDisplayedScore] = React.useState(0)
+  const [barInViewRef, barInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+
+  React.useEffect(() => {
+    if (barInView) {
+      let start = 0
+      const duration = 1000 // ms
+      const startTime = performance.now()
+
+      function animate(now: number) {
+        const elapsed = now - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        const value = Math.round(progress * resumeScore)
+        setDisplayedScore(value)
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        }
+      }
+      requestAnimationFrame(animate)
+    }
+  }, [barInView, resumeScore])
+
   return (
     <section className="w-full py-24 md:py-32 overflow-hidden bg-gradient-to-b from-white to-purple-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <FadeInWhenVisible className="space-y-8 w-full">
+            {/* ...top content unchanged... */}
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 text-sm font-medium mx-auto">
               <Sparkles className="h-3.5 w-3.5 mr-1.5" />
               <span>AI-Powered Resume Analysis</span>
             </div>
-
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-gray-900 dark:text-white">
                 Discover Your Resume&apos;s <span className="gradient-text">True Value</span>
@@ -61,7 +81,6 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
                 help you land your dream job.
               </p>
             </div>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
@@ -78,7 +97,6 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
                 See How It Works
               </Button>
             </div>
-
             <div className="flex items-center justify-center gap-4 mt-4">
               <div className="flex -space-x-2">
                 {[
@@ -119,20 +137,25 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
                   </div>
                   <div className="text-sm font-medium text-purple-500 dark:text-purple-400">Premium</div>
                 </div>
-
                 <div className="space-y-6">
-                  <div className="space-y-2">
+                  <div className="space-y-2" ref={barInViewRef}>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600 dark:text-gray-400">Overall Score</span>
                       <span className="font-medium text-gray-900 dark:text-gray-100" ref={resumeScoreRef}>
-                        {resumeScore}/100
+                        {displayedScore}/100
                       </span>
                     </div>
                     <div className="progress-bar dark:bg-gray-700">
-                      <div className="progress-value" style={{ width: `${resumeScore}%` }}></div>
+                      <div
+                        className="progress-value"
+                        style={{
+                          width: barInView ? `${resumeScore}%` : "0%",
+                          transition: "width 1s cubic-bezier(0.4,0,0.2,1)",
+                        }}
+                      ></div>
                     </div>
                   </div>
-
+                  {/* ...rest of your card content... */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:shadow-sm cursor-pointer">
                       <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Experience</div>
@@ -147,7 +170,6 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
                       </div>
                     </div>
                   </div>
-
                   <div className="space-y-3">
                     <h4 className="font-medium text-gray-800 dark:text-gray-200">Top Improvements</h4>
                     <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 border-l-4 border-purple-500 transition-all duration-300 hover:shadow-md hover:bg-purple-100 dark:hover:bg-purple-900/30 cursor-pointer">
@@ -156,7 +178,6 @@ export default function Hero({ resumeScore, resumeScoreRef }: HeroProps) {
                       </div>
                     </div>
                   </div>
-
                   <div className="pt-2">
                     <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white group">
                       View Full Analysis
