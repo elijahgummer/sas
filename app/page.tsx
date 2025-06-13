@@ -48,7 +48,19 @@ import { ChatSupport } from "./components/chat-support";
 import { SkillsAssessment } from "./components/skills-assessment";
 import { NotificationBell } from "./components/notification-bell";
 
-const FadeInWhenVisible = ({ children, className = "", delay = 0 }) => {
+import { ReactNode } from "react";
+
+type FadeInWhenVisibleProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+};
+
+const FadeInWhenVisible = ({
+  children,
+  className = "",
+  delay = 0,
+}: FadeInWhenVisibleProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

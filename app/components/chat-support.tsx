@@ -12,7 +12,7 @@ export function ChatSupport() {
   ])
   const [newMessage, setNewMessage] = useState("")
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault()
     if (!newMessage.trim()) return
 
