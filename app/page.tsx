@@ -6,6 +6,7 @@ import Builder from './components/Builder';
 import Features from './components/Features';
 import Pricing from './components/Pricing';
 import CTA from './components/CTA';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Features />
       <Pricing />
       <CTA />
+      <Footer />
     </>
   ) 
 }
