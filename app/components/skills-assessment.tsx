@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
+import { Button } from "./ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
+import { Progress } from "./ui/progress"
 import { CheckCircle2, ArrowRight, Award, LightbulbIcon, Zap } from "lucide-react"
 
 export function SkillsAssessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState([])
+  const [answers, setAnswers] = useState<(string[] | string)[]>([])
   const [showResults, setShowResults] = useState(false)
 
   const questions = [
@@ -33,7 +33,7 @@ export function SkillsAssessment() {
     },
   ]
 
-  const handleAnswer = (option) => {
+  const handleAnswer = (option: string) => {
     if (questions[currentQuestion].multiSelect) {
       // For multi-select questions
       const newAnswers = [...answers]
@@ -42,9 +42,9 @@ export function SkillsAssessment() {
       }
 
       if (newAnswers[currentQuestion].includes(option)) {
-        newAnswers[currentQuestion] = newAnswers[currentQuestion].filter((item) => item !== option)
+        newAnswers[currentQuestion] = (newAnswers[currentQuestion] as string[]).filter((item: string) => item !== option)
       } else {
-        newAnswers[currentQuestion] = [...newAnswers[currentQuestion], option]
+        newAnswers[currentQuestion] = [ ...(newAnswers[currentQuestion] as string[]), option ]
       }
 
       setAnswers(newAnswers)
@@ -71,7 +71,7 @@ export function SkillsAssessment() {
     }
   }
 
-  const isOptionSelected = (option) => {
+  const isOptionSelected = (option: string) => {
     if (!answers[currentQuestion]) return false
 
     if (Array.isArray(answers[currentQuestion])) {
@@ -154,7 +154,7 @@ export function SkillsAssessment() {
               <LightbulbIcon className="h-8 w-8 text-purple-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900">Assessment Complete!</h3>
-            <p className="text-gray-600 mt-1">Here's your personalized skill analysis</p>
+            <p className="text-gray-600 mt-1">Here&#39;s your personalized skill analysis</p>
           </div>
 
           <Tabs defaultValue="summary" className="w-full">
