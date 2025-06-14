@@ -93,7 +93,7 @@ export default function Builder() {
 
   return (
     <>
-      <section className="w-full py-16 bg-white dark:bg-gray-900">
+      {/* <section className="w-full py-16 bg-white dark:bg-gray-900">
         <div className="container px-4 md:px-6 mx-auto">
           <FadeInWhenVisible className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 text-sm font-medium mb-2">
@@ -118,7 +118,7 @@ export default function Builder() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <section className="w-full py-16 bg-purple-50 dark:bg-gray-800">
         <div className="container px-4 md:px-6 mx-auto">
