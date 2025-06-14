@@ -3,6 +3,7 @@
 import ResumeAnalyzerApp from './components/ResumeAnalyzerApp';
 import Hero from "./components/Hero"
 import Builder from './components/Builder';
+import Features from './components/Features';
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       <ResumeAnalyzerApp />
       <Hero resumeScore={85} />
       <Builder />
-      
+      <Features />
     </>
   ) 
 }
