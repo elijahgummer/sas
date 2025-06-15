@@ -29,7 +29,6 @@ const ResumeAnalyzerApp = () => {
     <div className={styles.analyzerWrapper}>
       {!showWorth ? (
         <div className={styles.uploaderWrapper}>
-          <p className={styles.instructionsText}>Upload your resume to know your worth.</p>
           <ResumeUploader setIsLoading={setIsLoadingResume} setResumeText={setResumeText} />
           {(isLoadingResume || isLoading) && 
             <div className={styles.loadingContainer}>
