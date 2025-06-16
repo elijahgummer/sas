@@ -21,7 +21,7 @@ export default function SignInPage() {
     setMounted(true)
   }, [])
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     // Simulate loading
@@ -65,7 +65,7 @@ export default function SignInPage() {
             </Link>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Sign in to your account</h2>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/sign-up" className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500">
                 Sign up for free
               </Link>

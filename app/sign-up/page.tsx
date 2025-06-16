@@ -21,7 +21,7 @@ export default function SignUpPage() {
     setMounted(true)
   }, [])
 
-  const handleSignUp = async (e) => {
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     // Simulate loading
@@ -211,7 +211,7 @@ export default function SignUpPage() {
                 Create an account today and discover how our AI-powered platform can help you land your dream job.
               </p>
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">What you'll get:</h3>
+                <h3 className="text-xl font-semibold mb-4">What you&#39;ll get:</h3>
                 <ul className="space-y-3 text-left">
                   <li className="flex items-start">
                     <div className="bg-white/20 p-1 rounded-full mr-3 mt-0.5">
