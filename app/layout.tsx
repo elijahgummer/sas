@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Analytics } from '@vercel/analytics/react';
+import { ClerkProvider } from "@clerk/nextjs"
+
 
 export const metadata: Metadata = {
   title: 'CVWORTH - Resume Analyzer',
@@ -20,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={cn(
@@ -31,5 +34,6 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
+    </ClerkProvider>
   )
 }
