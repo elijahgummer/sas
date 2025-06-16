@@ -1,49 +1,64 @@
-"use client"
+"use client";
 
-import React from "react"
-import Link from "next/link"
-import { Menu, X, LogIn } from "lucide-react"
-import { Button } from "./ui/button"
-import {ThemeToggle} from "./theme-toggle"
-import {NotificationBell} from "./notification-bell"
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X, LogIn } from "lucide-react";
+import { Button } from "./ui/button";
+import { ThemeToggle } from "./theme-toggle";
+import { NotificationBell } from "./notification-bell";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const [scrolled, setScrolled] = React.useState(false)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur-sm" : "bg-transparent"
+        scrolled
+          ? "bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="container flex h-20 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="relative w-10 h-10">
-            <div className="absolute inset-0 bg-purple-500 rounded-md blur-[2px] opacity-20"></div>
-            <div className="relative bg-white dark:bg-gray-800 rounded-md w-full h-full flex items-center justify-center border border-purple-200 dark:border-purple-800">
-              <span className="text-purple-500 font-bold text-xl">CV</span>
-            </div>
-          </div>
+        <Link
+          href="/"
+          className="flex items-center gap-2 group"
+          aria-label="Go to home"
+        >
+          <Image
+            src="/logo.png"
+            alt="CVWorth Logo"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain"
+            priority
+          />
           <span className="text-2xl font-bold">
-            <span className="text-gray-800 dark:text-gray-200">CV</span>
+            <span className="text-gray-800 dark:text-gray-200 group-hover:text-purple-500 transition-colors">
+              CV
+            </span>
             <span className="gradient-text">Worth</span>
           </span>
-        </div>
+        </Link>
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <NotificationBell />
-          <button className="z-50" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+          <button
+            className="z-50"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
             {isMenuOpen ? (
               <X className="h-6 w-6 text-gray-800 dark:text-gray-200" />
             ) : (
@@ -94,7 +109,10 @@ export default function Navbar() {
             >
               <Link href="/sign-in">Log in</Link>
             </Button>
-            <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white" asChild>
+            <Button
+              className="w-full bg-purple-500 hover:bg-purple-600 text-white"
+              asChild
+            >
               <Link href="/sign-up">Sign up</Link>
             </Button>
           </div>
@@ -149,5 +167,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }
