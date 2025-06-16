@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../co
 import { Button } from "../components/ui/button"
 import { FileText, Upload, BarChart3, Settings, ArrowRight } from "lucide-react"
 
+
 export default function DashboardPage() {
   return (
     <>
