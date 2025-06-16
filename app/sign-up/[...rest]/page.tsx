@@ -1,11 +1,11 @@
 "use client"
 
-import { SignIn } from "@clerk/nextjs"
+import { SignUp } from "@clerk/nextjs"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { ThemeToggle } from "../components/theme-toggle"
+import { ThemeToggle } from "../../components/theme-toggle"
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Left side - Form */}
@@ -28,16 +28,16 @@ export default function SignInPage() {
                 <span className="gradient-text">Worth</span>
               </span>
             </Link>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Sign in to your account</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Create your account</h2>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500">
-                Sign up
+              Already have an account?{" "}
+              <Link href="/sign-in" className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500">
+                Sign in
               </Link>
             </p>
           </div>
           <div className="mt-8">
-            <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+            <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" />
           </div>
         </div>
       </div>
@@ -47,21 +47,24 @@ export default function SignInPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-12">
             <div className="max-w-md text-center animate-fade-in">
-              <h2 className="text-3xl font-bold mb-4">Welcome Back!</h2>
+              <h2 className="text-3xl font-bold mb-4">Start Your Career Transformation</h2>
               <p className="text-lg mb-8">
-                Sign in to access your dashboard and unlock your resume insights.
+                Create an account today and discover how our AI-powered platform can help you land your dream job.
               </p>
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Why CVWorth?</h3>
+                <h3 className="text-xl font-semibold mb-4">What you&#39;ll get:</h3>
                 <ul className="space-y-3 text-left">
                   <li className="flex items-start">
-                    <span>✔️ Secure & private</span>
+                    <span>✔️ Comprehensive resume analysis</span>
                   </li>
                   <li className="flex items-start">
-                    <span>✔️ Fast, AI-powered analysis</span>
+                    <span>✔️ Personalized improvement suggestions</span>
                   </li>
                   <li className="flex items-start">
-                    <span>✔️ Personalized career growth tips</span>
+                    <span>✔️ ATS optimization for better visibility</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span>✔️ Industry-specific insights and benchmarks</span>
                   </li>
                 </ul>
               </div>
