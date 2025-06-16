@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,22 +10,36 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="relative w-8 h-8">
-                <div className="absolute inset-0 bg-purple-500 rounded-md blur-[2px] opacity-20"></div>
-                <div className="relative bg-white dark:bg-gray-800 rounded-md w-full h-full flex items-center justify-center border border-purple-200 dark:border-purple-800">
-                  <span className="text-purple-500 font-bold text-base">CV</span>
-                </div>
-              </div>
-              <span className="text-xl font-bold">
-                <span className="text-gray-800 dark:text-gray-200">CV</span>
-                <span className="gradient-text">Worth</span>
-              </span>
+              <Link
+                href="/"
+                className="flex items-center gap-2 group"
+                aria-label="Go to home"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="CVWorth Logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain"
+                  priority
+                />
+                <span className="text-2xl font-bold">
+                  <span className="text-gray-800 dark:text-gray-200 group-hover:text-purple-500 transition-colors">
+                    CV
+                  </span>
+                  <span className="gradient-text">Worth</span>
+                </span>
+              </Link>
             </div>
             <p className="text-gray-500 dark:text-gray-400">
-              AI-powered resume analysis and improvement to help you land your dream job.
+              AI-powered resume analysis and improvement to help you land your
+              dream job.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
+              <Link
+                href="#"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -41,7 +56,10 @@ export default function Footer() {
                 </svg>
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
+              <Link
+                href="#"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -58,7 +76,10 @@ export default function Footer() {
                 </svg>
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
+              <Link
+                href="#"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -77,7 +98,10 @@ export default function Footer() {
                 </svg>
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
+              <Link
+                href="#"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -99,7 +123,9 @@ export default function Footer() {
             </div>
           </div>
           <div className="space-y-4">
-            <h3 className="text-base font-medium text-gray-900 dark:text-white">Product</h3>
+            <h3 className="text-base font-medium text-gray-900 dark:text-white">
+              Product
+            </h3>
             <nav className="flex flex-col gap-2">
               <Link
                 href="#features"
@@ -128,7 +154,9 @@ export default function Footer() {
             </nav>
           </div>
           <div className="space-y-4">
-            <h3 className="text-base font-medium text-gray-900 dark:text-white">Company</h3>
+            <h3 className="text-base font-medium text-gray-900 dark:text-white">
+              Company
+            </h3>
             <nav className="flex flex-col gap-2">
               <Link
                 href="#"
@@ -184,5 +212,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
