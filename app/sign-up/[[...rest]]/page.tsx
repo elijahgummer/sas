@@ -26,13 +26,13 @@ export default function SignUpPage() {
           </div>
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl font-bold">
+              <span className="flex col-span-1 items-center justify-start text-xl font-bold">
                 <Image
                   src="/logo.png"
                   alt="Logo"
                   width={32}
                   height={32}
-                  className="w-8 h-8"
+                  className="w-7 h-6 mr-1"
                 />
                 <span className="text-gray-800 dark:text-gray-200">CV</span>
                 <span className="gradient-text">Worth</span>
