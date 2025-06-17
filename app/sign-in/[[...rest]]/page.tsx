@@ -23,7 +23,6 @@ export default function SignInPage() {
           </div>
           <div>
               <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8" />
-              <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8" />
               <span className="text-xl font-bold">
                 <span className="text-gray-800 dark:text-gray-200">CV</span>
                 <span className="gradient-text">Worth</span>
