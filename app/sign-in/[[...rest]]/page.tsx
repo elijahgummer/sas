@@ -50,7 +50,7 @@ export default function SignInPage() {
             </p>
           </div>
           <div className="mt-8">
-            <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+            <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" afterSignInUrl="/dashboard"/>
           </div>
         </div>
       </div>
