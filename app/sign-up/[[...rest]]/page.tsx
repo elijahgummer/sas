@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { SignUp } from "@clerk/nextjs"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { ThemeToggle } from "../../components/theme-toggle"
-import Image from "next/image"
+import { SignUp } from "@clerk/nextjs";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { ThemeToggle } from "../../components/theme-toggle";
+import Image from "next/image";
 
 export default function SignUpPage() {
   return (
@@ -16,23 +16,37 @@ export default function SignUpPage() {
         </div>
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="flex items-center gap-2 mb-8">
-            <Link href="/" className="flex items-center text-purple-500 hover:text-purple-600 transition-colors">
+            <Link
+              href="/"
+              className="flex items-center text-purple-500 hover:text-purple-600 transition-colors"
+            >
               <ArrowLeft className="h-4 w-4 mr-1" />
               Back to home
             </Link>
           </div>
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8" />
               <span className="text-xl font-bold">
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
+                />
                 <span className="text-gray-800 dark:text-gray-200">CV</span>
                 <span className="gradient-text">Worth</span>
               </span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Create your account</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Create your account
+            </h2>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Already have an account?{" "}
-              <Link href="/sign-in" className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500">
+              <Link
+                href="/sign-in"
+                className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500"
+              >
                 Sign in
               </Link>
             </p>
@@ -48,12 +62,17 @@ export default function SignUpPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-12">
             <div className="max-w-md text-center animate-fade-in">
-              <h2 className="text-3xl font-bold mb-4">Start Your Career Transformation</h2>
+              <h2 className="text-3xl font-bold mb-4">
+                Start Your Career Transformation
+              </h2>
               <p className="text-lg mb-8">
-                Create an account today and discover how our AI-powered platform can help you land your dream job.
+                Create an account today and discover how our AI-powered platform
+                can help you land your dream job.
               </p>
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">What you&#39;ll get:</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  What you&#39;ll get:
+                </h3>
                 <ul className="space-y-3 text-left">
                   <li className="flex items-start">
                     <span>✔️ Comprehensive resume analysis</span>
@@ -74,5 +93,5 @@ export default function SignUpPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
