@@ -8,13 +8,11 @@ import Pricing from './components/Pricing';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import { UserButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <UserButton afterSignOutUrl="/" />
       <ResumeAnalyzerApp />
       <Hero resumeScore={85} />
       <Builder />

@@ -7,6 +7,7 @@ import { Menu, X, LogIn } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { NotificationBell } from "./notification-bell";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -146,6 +147,7 @@ export default function Navbar() {
           </Link>
         </nav>
         <div className="hidden md:flex items-center gap-3">
+          <UserButton afterSignOutUrl="/" />
           <ThemeToggle />
           <NotificationBell />
           <Button
