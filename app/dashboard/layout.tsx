@@ -3,6 +3,7 @@ import { UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { auth } from "@clerk/nextjs/server" // <-- FIXED IMPORT
+import Image from "next/image"
 
 export default async function DashboardLayout({
   children,
@@ -19,18 +20,26 @@ export default async function DashboardLayout({
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative w-8 h-8">
-              <div className="absolute inset-0 bg-blue-500 rounded-md blur-[2px] opacity-20"></div>
-              <div className="relative bg-white rounded-md w-full h-full flex items-center justify-center border border-blue-200">
-                <span className="text-blue-500 font-bold text-base">CV</span>
-              </div>
-            </div>
-            <span className="text-xl font-bold">
-              <span className="text-gray-800">CV</span>
-              <span className="gradient-text">Worth</span>
+           <Link
+          href="/"
+          className="flex items-center gap-2 group"
+          aria-label="Go to home"
+        >
+          <Image
+            src="/logo.png"
+            alt="CVWorth Logo"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain"
+            priority
+          />
+          <span className="text-2xl font-bold">
+            <span className="text-gray-800 dark:text-gray-200 group-hover:text-purple-500 transition-colors">
+              CV
             </span>
-          </Link>
+            <span className="gradient-text">Worth</span>
+          </span>
+        </Link>
 
           <nav className="hidden md:flex space-x-6">
             <Link href="/dashboard" className="text-blue-500 font-medium">
