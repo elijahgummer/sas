@@ -21,7 +21,9 @@ import {
   Download,
   Edit3,
   Zap,
+  Award,
 } from "lucide-react"
+import { ResumeAnalyzerApp } from "../components/resume-analyzer-app"
 
 export default function DashboardPage() {
   const [activeFeature, setActiveFeature] = useState("overview")
@@ -32,6 +34,12 @@ export default function DashboardPage() {
       name: "Overview",
       icon: <BarChart3 className="h-5 w-5" />,
       description: "Dashboard overview",
+    },
+    {
+      id: "resume-analyzer",
+      name: "Resume Worth",
+      icon: <Award className="h-5 w-5" />,
+      description: "Analyze resume value & worth",
     },
     {
       id: "keyword-analyzer",
@@ -69,6 +77,8 @@ export default function DashboardPage() {
     switch (activeFeature) {
       case "overview":
         return <OverviewContent />
+      case "resume-analyzer":
+        return <ResumeAnalyzerApp />
       case "keyword-analyzer":
         return <KeywordAnalyzerContent />
       case "ai-rewriter":
@@ -149,7 +159,7 @@ function OverviewContent() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome back!</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Here&#39;s your resume performance overview</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Here&apos;s your resume performance overview</p>
         </div>
         <Button className="bg-purple-500 hover:bg-purple-600">
           <Plus className="h-4 w-4 mr-2" />
@@ -610,7 +620,7 @@ function CoverLetterContent() {
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   In my current role at ABC Company, I have successfully led the development of multiple React-based
                   applications that serve over 10,000 users daily. My expertise in JavaScript, Node.js, and cloud
-                  technologies aligns perfectly with your requirements. I am particularly drawn to TechCorp&#39;s commitment
+                  technologies aligns perfectly with your requirements. I am particularly drawn to TechCorp&apos;s commitment
                   to innovation and would love to contribute to your mission of transforming digital experiences.
                 </p>
                 <Button size="sm" variant="ghost" className="mt-2 text-purple-600">
@@ -623,7 +633,7 @@ function CoverLetterContent() {
                 <h4 className="font-medium mb-2">Closing</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   I would welcome the opportunity to discuss how my skills and passion for technology can contribute to
-                  TechCorp&#39;s continued success. Thank you for considering my application.
+                  TechCorp&apos;s continued success. Thank you for considering my application.
                   <br />
                   <br />
                   Sincerely,
