@@ -4,7 +4,7 @@ export default clerkMiddleware();
 
 export const config = {
   matcher: [
-    // Exclude static files, Clerk routes, and all variations of sign-in/sign-up
-    "/((?!api|_next/static|_next/image|favicon.ico|logo.png|sign-in(.*)|sign-up(.*)|sso-callback|_clerk|.*\\..*).*)",
+    // Protect everything except these public/auth/static routes:
+    "/((?!api/|_next/|favicon.ico|logo.png|sign-in|sign-in/.*|sign-up|sign-up/.*|sso-callback|_clerk/).*)",
   ],
 };
