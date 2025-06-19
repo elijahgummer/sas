@@ -1,6 +1,5 @@
 'use client';
 
-import ResumeAnalyzerApp from './components/ResumeAnalyzerApp';
 import Hero from "./components/Hero"
 import Builder from './components/Builder';
 import Features from './components/Features';
@@ -13,7 +12,6 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <ResumeAnalyzerApp />
       <Hero resumeScore={85} />
       <Builder />
       <Features />
