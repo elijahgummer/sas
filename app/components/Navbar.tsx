@@ -39,7 +39,58 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="container flex h-20 items-center justify-between">
+      {/* Desktop Navbar */}
+      <div className="hidden md:flex items-center w-full relative h-20 px-4">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 group flex-shrink-0"
+          aria-label="Go to home"
+        >
+          <Image
+            src="/logo.png"
+            alt="CVWorth Logo"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain"
+            priority
+          />
+          <span className="text-2xl font-bold">
+            <span className="text-gray-800 dark:text-gray-200 group-hover:text-purple-500 transition-colors">CV</span>
+            <span className="gradient-text">Worth</span>
+          </span>
+        </Link>
+
+        {/* Centered nav links */}
+        <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-8">
+          <Link href="#features" className="nav-link">Features</Link>
+          <Link href="#how-it-works" className="nav-link">How It Works</Link>
+          <Link href="#testimonials" className="nav-link">Testimonials</Link>
+          <Link href="#pricing" className="nav-link">Pricing</Link>
+        </nav>
+
+        {/* Actions and UserButton */}
+        <div className="flex items-center gap-3 ml-auto">
+          <ThemeToggle />
+          <NotificationBell />
+          <Button variant="ghost" asChild>
+            <Link href="/sign-in">
+              <LogIn className="mr-2 h-4 w-4" />
+              Log in
+            </Link>
+          </Button>
+          <Button className="bg-purple-500 hover:bg-purple-600 text-white" asChild>
+            <Link href="/sign-up">Sign up free</Link>
+          </Button>
+          <div className="ml-6">
+            <UserButton afterSignOutUrl="/" />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navbar */}
+      <div className="flex md:hidden items-center h-20 px-4 justify-between">
+        {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2 group"
@@ -58,31 +109,7 @@ export default function Navbar() {
             <span className="gradient-text">Worth</span>
           </span>
         </Link>
-
-        {/* Desktop navigation */}
-        <nav className="hidden md:flex gap-8">
-          <Link href="#features" className="nav-link">Features</Link>
-          <Link href="#how-it-works" className="nav-link">How It Works</Link>
-          <Link href="#testimonials" className="nav-link">Testimonials</Link>
-          <Link href="#pricing" className="nav-link">Pricing</Link>
-        </nav>
-        <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
-          <NotificationBell />
-          <Button variant="ghost" asChild>
-            <Link href="/sign-in">
-              <LogIn className="mr-2 h-4 w-4" />
-              Log in
-            </Link>
-          </Button>
-          <Button className="bg-purple-500 hover:bg-purple-600 text-white" asChild>
-            <Link href="/sign-up">Sign up free</Link>
-          </Button>
-          <UserButton afterSignOutUrl="/" />
-        </div>
-
-        {/* Hamburger menu for mobile */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           <NotificationBell />
           <button
