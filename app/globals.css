@@ -71,6 +71,21 @@
   min-height: 100vh;
 }
 
+/* globals.css or a component CSS file */
+@keyframes slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slide-in {
+  animation: slide-in 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-link {
+  @apply text-base font-medium text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors;
+}
+.nav-link-mobile {
+  @apply text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-500 dark:hover:text-purple-400 transition-colors;
+}
+
 .site-bg-grid::before {
   content: "";
   position: fixed;
