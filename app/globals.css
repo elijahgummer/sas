@@ -66,6 +66,23 @@
   box-shadow: 0 0 30px 10px rgba(168, 85, 247, 0.3);
 }
 
+.site-bg-grid {
+  position: relative;
+  min-height: 100vh;
+}
+
+.site-bg-grid::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml;utf8,<svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M32 0H0V32' stroke='%239999bb' stroke-width='1' stroke-opacity='0.12'/><path d='M0 32H32V0' stroke='%239999bb' stroke-width='1' stroke-opacity='0.12'/></svg>");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  opacity: 1;
+  pointer-events: none;
+}
+
 .gradient-text {
   background: linear-gradient(to right, #a855f7, #8b5cf6, #7c3aed);
   -webkit-background-clip: text;
@@ -96,16 +113,29 @@
 }
 
 .hero-gradient {
-  background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(168, 85, 247, 0.08) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
 }
 
 .section-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.3), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(168, 85, 247, 0.3),
+    transparent
+  );
 }
 
 .feature-icon-bg {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.1),
+    rgba(168, 85, 247, 0.05)
+  );
 }
 
 .shimmer {

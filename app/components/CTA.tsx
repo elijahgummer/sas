@@ -34,25 +34,6 @@ const FadeInWhenVisible = ({
 export default function CTA() {
   return (
     <section id="cta" className="w-full py-20 md:py-28">
-      <div
-        className="
-    relative
-    overflow-hidden
-    rounded-xl
-    bg-white
-    dark:bg-gray-900
-    shadow-lg
-    px-8
-    py-12
-    text-center
-    before:absolute
-    before:inset-0
-    before:-z-10
-    before:bg-[url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'2\' cy=\'2\' r=\'2\' fill=\'%23a78bfa\' fill-opacity=\'0.08\'/></svg>')]
-    before:opacity-80
-    before:content-['']
-  "
-      >
         <div className="container px-4 md:px-6">
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-700 rounded-full blur-3xl opacity-30 -mr-20 -mt-20"></div>
@@ -90,7 +71,8 @@ export default function CTA() {
             </FadeInWhenVisible>
           </div>
         </div>
-      </div>
+        
     </section>
+    
   );
 }

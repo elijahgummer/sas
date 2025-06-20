@@ -7,6 +7,7 @@ import Pricing from './components/Pricing';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import { X } from 'lucide-react';
 
 export default function Home() {
   return (
