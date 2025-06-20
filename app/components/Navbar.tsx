@@ -104,8 +104,8 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(false)}
             aria-label="Close menu"
           />
-          {/* Menu panel */}
-          <nav className="relative ml-auto w-4/5 max-w-xs bg-white dark:bg-gray-900 shadow-lg h-full flex flex-col p-8 gap-6 animate-slide-in">
+          {/* Full-width Menu panel */}
+          <nav className="relative w-full bg-white dark:bg-gray-900 shadow-lg h-full flex flex-col items-center justify-center p-8 gap-6 animate-slide-in">
             <button
               className="absolute top-4 right-4"
               onClick={() => setIsMenuOpen(false)}
@@ -120,18 +120,22 @@ export default function Navbar() {
                 <span className="gradient-text">Worth</span>
               </span>
             </Link>
-            <Link href="#features" className="nav-link-mobile" onClick={() => setIsMenuOpen(false)}>Features</Link>
-            <Link href="#how-it-works" className="nav-link-mobile" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
-            <Link href="#testimonials" className="nav-link-mobile" onClick={() => setIsMenuOpen(false)}>Testimonials</Link>
-            <Link href="#pricing" className="nav-link-mobile" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-            <div className="flex flex-col gap-4 mt-8">
-              <Button variant="outline" asChild>
+            <div className="flex flex-col items-center gap-6 w-full">
+              <Link href="#features" className="nav-link-mobile text-center w-full" onClick={() => setIsMenuOpen(false)}>Features</Link>
+              <Link href="#how-it-works" className="nav-link-mobile text-center w-full" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+              <Link href="#testimonials" className="nav-link-mobile text-center w-full" onClick={() => setIsMenuOpen(false)}>Testimonials</Link>
+              <Link href="#pricing" className="nav-link-mobile text-center w-full" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
+            </div>
+            <div className="flex flex-col items-center gap-4 mt-8 w-full">
+              <Button variant="outline" asChild className="w-full text-center">
                 <Link href="/sign-in" onClick={() => setIsMenuOpen(false)}>Log in</Link>
               </Button>
-              <Button className="bg-purple-500 hover:bg-purple-600 text-white" asChild>
+              <Button className="bg-purple-500 hover:bg-purple-600 text-white w-full text-center" asChild>
                 <Link href="/sign-up" onClick={() => setIsMenuOpen(false)}>Sign up</Link>
               </Button>
-              <UserButton afterSignOutUrl="/" />
+              <div className="flex justify-center w-full">
+                <UserButton afterSignOutUrl="/" />
+              </div>
             </div>
           </nav>
         </div>
