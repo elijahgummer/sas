@@ -15,8 +15,8 @@ export default function Home() {
       <Navbar />
       <Hero resumeScore={85} />
       <Builder />
-      <Features />
       <HowItWorks />
+      <Features />
       <Pricing />
       <CTA />
       <Footer />
