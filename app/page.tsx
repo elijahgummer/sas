@@ -8,6 +8,7 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import { HowItWorks } from './components/Howitworks';
+import { Testimonials } from "./components/Testiomonals";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero resumeScore={85} />
       <Builder />
       <HowItWorks />
+      <Testimonials />
       <Features />
       <Pricing />
       <CTA />
