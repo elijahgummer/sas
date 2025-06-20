@@ -119,7 +119,7 @@ export function HowItWorks() {
         <FadeInWhenVisible delay={400} className="mt-16 text-center">
           <div className="bg-gradient-to-r from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl p-8 max-w-3xl mx-auto">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Ready to see your resume's true potential?
+              Ready to see your resume&#39;s true potential?
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Join thousands of professionals who have improved their resumes and landed better jobs.
