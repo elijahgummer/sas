@@ -254,33 +254,6 @@ export function Testimonials() {
               </CardContent>
             </Card>
           </FadeInWhenVisible>
-
-          {/* Stats and CTA */}
-          <FadeInWhenVisible delay={900} className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl p-8 max-w-4xl mx-auto">
-              <div className="grid gap-8 md:grid-cols-3 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">10,000+</div>
-                  <div className="text-gray-600 dark:text-gray-300">Resumes Analyzed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">4.9/5</div>
-                  <div className="text-gray-600 dark:text-gray-300">Average Rating</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">85%</div>
-                  <div className="text-gray-600 dark:text-gray-300">Get More Interviews</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Join thousands of successful professionals
-              </h3>
-              <Button className="bg-purple-500 hover:bg-purple-600 text-white" size="lg">
-                Start Your Success Story
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </FadeInWhenVisible>
         </div>
       </div>
     </section>
