@@ -40,7 +40,7 @@ export default function Navbar() {
       }`}
     >
       {/* Desktop Navbar */}
-      <div className="hidden md:flex items-center w-full relative h-20 px-4">
+      <div className="hidden md:flex items-center w-full relative h-20 px-8">
         {/* Logo */}
         <Link
           href="/"
