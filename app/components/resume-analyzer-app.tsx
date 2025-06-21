@@ -161,6 +161,16 @@ function ResumeUploader({ setResumeText, setIsLoading }: { setResumeText: (t: st
   );
 }
 
+const iconMap: Record<string, JSX.Element> = {
+  Award: <Award className="h-4 w-4" />,
+  BarChart3: <BarChart3 className="h-4 w-4" />,
+  CheckCircle: <CheckCircle className="h-4 w-4" />,
+  Zap: <Zap className="h-4 w-4" />,
+  Users: <Users className="h-4 w-4" />,
+  FileText: <FileText className="h-4 w-4" />,
+  Target: <Target className="h-4 w-4" />,
+};
+
 export function ResumeAnalyzerApp() {
   const [step, setStep] = useState<"upload" | "analyzing" | "result">("upload");
   const [resumeText, setResumeText] = useState("");
@@ -173,11 +183,10 @@ export function ResumeAnalyzerApp() {
     setStep("analyzing");
     setError("");
     try {
-      // Replace this with your real API endpoint
       const res = await fetch("/api/resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ prompt: text }),
       });
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
@@ -400,7 +409,7 @@ export function ResumeAnalyzerApp() {
                   >
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-green-100 dark:bg-green-800 rounded-lg text-green-600 dark:text-green-300">
-                        {strength.icon}
+                        {iconMap[strength.icon] || <Award className="h-4 w-4" />}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-1">
@@ -440,7 +449,7 @@ export function ResumeAnalyzerApp() {
                   >
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400">
-                        {improvement.icon}
+                        {iconMap[improvement.icon] || <Users className="h-4 w-4" />}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
