@@ -166,94 +166,22 @@ export function ResumeAnalyzerApp() {
   const [resumeText, setResumeText] = useState("");
   const [analysis, setAnalysis] = useState<any>(null);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Simulate API call to analyze resume
+  // Call your real API here!
   const analyzeResume = async (text: string) => {
     setStep("analyzing");
     setError("");
     try {
-      // Replace this with your real API call
-      // Example: const res = await fetch("/api/resume", { method: "POST", body: JSON.stringify({ text }) });
-      // const data = await res.json();
-      // setAnalysis(data);
-
-      // Simulated response:
-      await new Promise((r) => setTimeout(r, 2000));
-      setAnalysis({
-        overallScore: 78,
-        marketValue: 92500,
-        industryPercentile: 85,
-        categoryScores: [
-          { name: "Experience", score: 85, trend: "up", change: "+5" },
-          { name: "Skills", score: 72, trend: "up", change: "+8" },
-          { name: "Education", score: 90, trend: "neutral", change: "0" },
-          { name: "Achievements", score: 68, trend: "down", change: "-2" },
-          { name: "Format & Structure", score: 82, trend: "up", change: "+3" },
-          { name: "Keywords", score: 75, trend: "up", change: "+12" },
-        ],
-        strengths: [
-          {
-            title: "Strong Technical Background",
-            description: "Excellent depth in software development with 5+ years experience",
-            impact: "High",
-            icon: <Award className="h-4 w-4" />,
-          },
-          {
-            title: "Quantified Achievements",
-            description: "Good use of metrics and numbers to demonstrate impact",
-            impact: "High",
-            icon: <BarChart3 className="h-4 w-4" />,
-          },
-          {
-            title: "Relevant Education",
-            description: "Computer Science degree aligns well with career path",
-            impact: "Medium",
-            icon: <CheckCircle className="h-4 w-4" />,
-          },
-          {
-            title: "Modern Tech Stack",
-            description: "Experience with current technologies like React, Node.js",
-            impact: "High",
-            icon: <Zap className="h-4 w-4" />,
-          },
-        ],
-        improvements: [
-          {
-            title: "Add Leadership Experience",
-            description: "Include examples of leading projects or mentoring team members",
-            priority: "High",
-            impact: "+8 points",
-            icon: <Users className="h-4 w-4" />,
-          },
-          {
-            title: "Industry Certifications",
-            description: "Consider AWS, Google Cloud, or other relevant certifications",
-            priority: "Medium",
-            impact: "+5 points",
-            icon: <Award className="h-4 w-4" />,
-          },
-          {
-            title: "Open Source Contributions",
-            description: "Showcase GitHub projects and community involvement",
-            priority: "Medium",
-            impact: "+4 points",
-            icon: <FileText className="h-4 w-4" />,
-          },
-          {
-            title: "Professional Summary Enhancement",
-            description: "Strengthen your professional summary with more impact",
-            priority: "Low",
-            impact: "+3 points",
-            icon: <Target className="h-4 w-4" />,
-          },
-        ],
-        marketComparison: [
-          { role: "Software Engineer", percentile: 78, salary: "$85k - $105k" },
-          { role: "Senior Software Engineer", percentile: 65, salary: "$95k - $130k" },
-          { role: "Full Stack Developer", percentile: 82, salary: "$80k - $110k" },
-          { role: "Technical Lead", percentile: 45, salary: "$110k - $150k" },
-        ],
+      // Replace this with your real API endpoint
+      const res = await fetch("/api/resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
       });
+      if (!res.ok) throw new Error("API error");
+      const data = await res.json();
+      setAnalysis(data);
       setStep("result");
     } catch (e) {
       setError("There was an error analyzing your resume.");
@@ -293,13 +221,13 @@ export function ResumeAnalyzerApp() {
   if (step === "upload") {
     return (
       <div className="max-w-lg mx-auto mt-10">
-        <ResumeUploader setResumeText={setResumeText} setIsLoading={() => {}} />
+        <ResumeUploader setResumeText={setResumeText} setIsLoading={setIsLoading} />
         {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
       </div>
     );
   }
 
-  if (step === "analyzing") {
+  if (step === "analyzing" || isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px]">
         <RefreshCw className="h-10 w-10 animate-spin text-purple-500 mb-4" />
@@ -307,6 +235,8 @@ export function ResumeAnalyzerApp() {
       </div>
     );
   }
+
+  if (!analysis) return null;
 
   // "result" step
   const {
@@ -391,7 +321,7 @@ export function ResumeAnalyzerApp() {
               </Badge>
             </div>
             <div className="space-y-2">
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">${marketValue.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">${marketValue?.toLocaleString?.() ?? marketValue}</div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Estimated annual salary</p>
               <div className="flex items-center gap-1 text-sm text-green-600 dark:text-green-400">
                 <ArrowUp className="h-3 w-3" />
@@ -435,7 +365,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {categoryScores.map((category: any, index: number) => (
+                {categoryScores?.map((category: any, index: number) => (
                   <div key={index} className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="font-medium text-gray-900 dark:text-white">{category.name}</span>
@@ -463,7 +393,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {strengths.map((strength: any, index: number) => (
+                {strengths?.map((strength: any, index: number) => (
                   <div
                     key={index}
                     className="border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 rounded-lg p-4"
@@ -503,7 +433,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {improvements.map((improvement: any, index: number) => (
+                {improvements?.map((improvement: any, index: number) => (
                   <div
                     key={index}
                     className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
@@ -545,7 +475,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {marketComparison.map((role: any, index: number) => (
+                {marketComparison?.map((role: any, index: number) => (
                   <div
                     key={index}
                     className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
@@ -586,7 +516,7 @@ export function ResumeAnalyzerApp() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-lg font-semibold text-gray-900 dark:text-white">Current</div>
-                  <div className="text-2xl font-bold text-gray-600 dark:text-gray-400">$92.5k</div>
+                  <div className="text-2xl font-bold text-gray-600 dark:text-gray-400">${marketValue?.toLocaleString?.() ?? marketValue}</div>
                 </div>
                 <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
                   <div className="text-lg font-semibold text-yellow-800 dark:text-yellow-300">With Improvements</div>
