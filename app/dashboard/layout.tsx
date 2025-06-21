@@ -2,6 +2,7 @@ import type React from "react";
 import Link from "next/link";
 import { ThemeToggle } from "../components/theme-toggle";
 import { NotificationBell } from "../components/notification-bell";
+import Image from "next/image";
 
 export default function DashboardLayout({
   children,
