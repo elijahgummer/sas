@@ -65,7 +65,8 @@ export default function Features() {
         </FadeInWhenVisible>
 
         <Tabs defaultValue="analysis" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 gap-2 mb-12 relative z-10">
+          <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 gap-2 mb-20 md:mb-30 relative z-20 bg-white/90 dark:bg-gray-800/90 shadow">
+            {" "}
             <TabsTrigger
               value="analysis"
               className="text-sm md:text-base w-full"
@@ -83,7 +84,7 @@ export default function Features() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="analysis" className="scale-in-animation">
+          <TabsContent value="analysis" className="scale-in-animation mt-10">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <FadeInWhenVisible>
                 <div className="transition-all duration-300 hover:-translate-y-1">
