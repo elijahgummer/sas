@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ThemeToggle } from "../components/theme-toggle";
 import { NotificationBell } from "../components/notification-bell";
 import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
 
 export default function DashboardLayout({
   children,
@@ -43,12 +44,7 @@ export default function DashboardLayout({
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <NotificationBell />
-            {/* <UserButton afterSignOutUrl="/" /> */}
-            <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/20 rounded-full flex items-center justify-center">
-              <span className="text-purple-600 dark:text-purple-400 font-medium text-sm">
-                JD
-              </span>
-            </div>
+            <UserButton afterSignOutUrl="/" />
           </div>
         </div>
       </header>
