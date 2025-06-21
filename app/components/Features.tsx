@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useInView } from "react-intersection-observer"
+import { useInView } from "react-intersection-observer";
 import {
   Zap,
   BarChart3,
@@ -12,29 +12,23 @@ import {
   Rocket,
   BookOpen,
   Briefcase,
-} from "lucide-react"
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "./ui/tabs"
-import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card"
-
+} from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
+import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 
 const FadeInWhenVisible = ({
   children,
   className = "",
   delay = 0,
 }: {
-  children: React.ReactNode
-  className?: string
-  delay?: number
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
 }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   return (
     <div
@@ -46,12 +40,15 @@ const FadeInWhenVisible = ({
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 export default function Features() {
   return (
-    <section id="features" className="w-full py-20 md:py-28 relative bg-gray-50 dark:bg-gray-800">
+    <section
+      id="features"
+      className="w-full py-20 md:py-28 relative bg-gray-50 dark:bg-gray-800"
+    >
       <div className="container px-4 md:px-6 relative">
         <FadeInWhenVisible className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 text-sm font-medium mb-2">
@@ -62,20 +59,26 @@ export default function Features() {
             Everything you need to improve your resume
           </h2>
           <p className="max-w-[800px] text-gray-600 dark:text-gray-300 md:text-lg">
-            Our AI-powered platform provides comprehensive analysis and actionable insights to help you stand out in
-            the job market.
+            Our AI-powered platform provides comprehensive analysis and
+            actionable insights to help you stand out in the job market.
           </p>
         </FadeInWhenVisible>
 
         <Tabs defaultValue="analysis" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="analysis" className="text-sm md:text-base">
+          <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 gap-2 mb-12 relative z-10">
+            <TabsTrigger
+              value="analysis"
+              className="text-sm md:text-base w-full"
+            >
               Resume Analysis
             </TabsTrigger>
-            <TabsTrigger value="optimization" className="text-sm md:text-base">
+            <TabsTrigger
+              value="optimization"
+              className="text-sm md:text-base w-full"
+            >
               ATS Optimization
             </TabsTrigger>
-            <TabsTrigger value="career" className="text-sm md:text-base">
+            <TabsTrigger value="career" className="text-sm md:text-base w-full">
               Career Growth
             </TabsTrigger>
           </TabsList>
@@ -89,10 +92,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <BarChart3 className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Resume Worth Score</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Resume Worth Score
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Get a detailed breakdown of your resume&#39;s market value based on experience, skills, and
-                        education.
+                        Get a detailed breakdown of your resume&#39;s market
+                        value based on experience, skills, and education.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -106,10 +111,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Brain className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">AI-Powered Analysis</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        AI-Powered Analysis
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Our advanced AI analyzes every aspect of your resume and provides personalized improvement
-                        suggestions.
+                        Our advanced AI analyzes every aspect of your resume and
+                        provides personalized improvement suggestions.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -123,10 +130,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Lightbulb className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Smart Suggestions</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Smart Suggestions
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Receive tailored recommendations to enhance your resume&#39;s impact and appeal to hiring
-                        managers.
+                        Receive tailored recommendations to enhance your
+                        resume&#39;s impact and appeal to hiring managers.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -144,10 +153,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Award className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">ATS Optimization</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        ATS Optimization
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Ensure your resume passes through Applicant Tracking Systems with keyword optimization and
-                        format checking.
+                        Ensure your resume passes through Applicant Tracking
+                        Systems with keyword optimization and format checking.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -161,10 +172,13 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Target className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Keyword Matcher</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Keyword Matcher
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Automatically identify and suggest industry-specific keywords to include in your resume for
-                        better visibility.
+                        Automatically identify and suggest industry-specific
+                        keywords to include in your resume for better
+                        visibility.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -178,9 +192,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Repeat className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">A/B Testing</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        A/B Testing
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Create multiple versions of your resume and track which one performs better with employers.
+                        Create multiple versions of your resume and track which
+                        one performs better with employers.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -198,10 +215,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Rocket className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Career Advancement</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Career Advancement
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Get insights on skills and experiences that can help you advance to the next level in your
-                        career.
+                        Get insights on skills and experiences that can help you
+                        advance to the next level in your career.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -215,10 +234,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <BookOpen className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Skill Gap Analysis</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Skill Gap Analysis
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Identify skills you need to develop for your target roles with personalized learning
-                        recommendations.
+                        Identify skills you need to develop for your target
+                        roles with personalized learning recommendations.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -232,10 +253,12 @@ export default function Features() {
                       <div className="p-3 rounded-lg feature-icon-bg dark:bg-purple-900/20 w-fit mb-3 border border-purple-200 dark:border-purple-800">
                         <Briefcase className="h-6 w-6 text-purple-500 dark:text-purple-400" />
                       </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Industry Insights</CardTitle>
+                      <CardTitle className="text-xl text-gray-900 dark:text-white">
+                        Industry Insights
+                      </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-                        Access real-time data on industry trends, in-demand skills, and salary benchmarks for your
-                        field.
+                        Access real-time data on industry trends, in-demand
+                        skills, and salary benchmarks for your field.
                       </CardDescription>
                     </CardHeader>
                   </Card>
@@ -246,5 +269,5 @@ export default function Features() {
         </Tabs>
       </div>
     </section>
-  )
+  );
 }
