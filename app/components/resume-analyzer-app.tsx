@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
 import { Button } from "../components/ui/button"
 import { Progress } from "../components/ui/progress"
@@ -25,95 +25,248 @@ import {
   RefreshCw,
 } from "lucide-react"
 
+// PDF.js types
+import type { TextContent, TextItem } from 'pdfjs-dist/types/src/display/api'
+
+function ResumeUploader({ setResumeText, setIsLoading }: { setResumeText: (t: string) => void, setIsLoading: (b: boolean) => void }) {
+  const [error, setError] = useState('');
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  const mergeTextContent = (textContent: TextContent) => {
+    return textContent.items
+      .map((item) => {
+        const { str, hasEOL } = item as TextItem;
+        return str + (hasEOL ? '\n' : '');
+      })
+      .join('');
+  };
+
+  const readResume = async (pdfFile: File | undefined) => {
+    const pdfjs = await import('pdfjs-dist');
+    pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+    if (!pdfFile) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const arrayBuffer = event.target?.result;
+      if (arrayBuffer && arrayBuffer instanceof ArrayBuffer) {
+        const loadingTask = pdfjs.getDocument(new Uint8Array(arrayBuffer));
+        loadingTask.promise.then(
+          (pdfDoc) => {
+            pdfDoc.getPage(1).then((page) => {
+              page.getTextContent().then((textContent) => {
+                const extractedText = mergeTextContent(textContent);
+                setResumeText(extractedText);
+                setIsLoading(false);
+              });
+            });
+          },
+          (reason) => {
+            setError('Error during PDF loading');
+            setIsLoading(false);
+          }
+        );
+      }
+    };
+    reader.readAsArrayBuffer(pdfFile);
+  };
+
+  const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setResumeText('');
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const items = event.dataTransfer.items;
+      if (!items || items.length !== 1) {
+        throw new Error('Please drop a single file.');
+      }
+      const item = items[0];
+      if (item.kind !== 'file' || item.type !== 'application/pdf') {
+        throw new Error('Please drop a single PDF file.');
+      }
+      const file = item.getAsFile();
+      if (!file) {
+        throw new Error("The PDF wasn't uploaded correctly.");
+      }
+      await readResume(file);
+    } catch (error) {
+      setError('There was an error reading the resume. Please try again.');
+      setIsLoading(false);
+    }
+  };
+
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragEnter = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleButtonUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setError('');
+    setIsLoading(true);
+    setResumeText('');
+
+    try {
+      const file = event.target.files?.[0];
+      if (!file) {
+        setError("The PDF wasn't uploaded correctly.");
+        setIsLoading(false);
+        return;
+      }
+      await readResume(file);
+    } catch (error) {
+      setError('There was an error reading the resume. Please try again.');
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <div
+        className={`border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+          isDragOver ? 'border-purple-500 bg-purple-50' : 'border-gray-300 bg-white dark:bg-gray-800'
+        }`}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+      >
+        <input
+          type="file"
+          id="file-upload"
+          onChange={handleButtonUpload}
+          accept="application/pdf"
+          hidden
+        />
+        <label htmlFor="file-upload" className="flex flex-col items-center gap-2 cursor-pointer">
+          <Upload size={36} className="text-purple-500" />
+          <span className="font-medium text-purple-700">Upload resume</span>
+          <span className="text-xs text-gray-500">PDF only</span>
+        </label>
+      </div>
+      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+    </div>
+  );
+}
+
 export function ResumeAnalyzerApp() {
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [analysisComplete, setAnalysisComplete] = useState(true)
+  const [step, setStep] = useState<"upload" | "analyzing" | "result">("upload");
+  const [resumeText, setResumeText] = useState("");
+  const [analysis, setAnalysis] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  const handleAnalyze = () => {
-    setIsAnalyzing(true)
-    setTimeout(() => {
-      setIsAnalyzing(false)
-      setAnalysisComplete(true)
-    }, 3000)
-  }
+  // Simulate API call to analyze resume
+  const analyzeResume = async (text: string) => {
+    setStep("analyzing");
+    setError("");
+    try {
+      // Replace this with your real API call
+      // Example: const res = await fetch("/api/resume", { method: "POST", body: JSON.stringify({ text }) });
+      // const data = await res.json();
+      // setAnalysis(data);
 
-  const overallScore = 78
-  const marketValue = 92500
-  const industryPercentile = 85
+      // Simulated response:
+      await new Promise((r) => setTimeout(r, 2000));
+      setAnalysis({
+        overallScore: 78,
+        marketValue: 92500,
+        industryPercentile: 85,
+        categoryScores: [
+          { name: "Experience", score: 85, trend: "up", change: "+5" },
+          { name: "Skills", score: 72, trend: "up", change: "+8" },
+          { name: "Education", score: 90, trend: "neutral", change: "0" },
+          { name: "Achievements", score: 68, trend: "down", change: "-2" },
+          { name: "Format & Structure", score: 82, trend: "up", change: "+3" },
+          { name: "Keywords", score: 75, trend: "up", change: "+12" },
+        ],
+        strengths: [
+          {
+            title: "Strong Technical Background",
+            description: "Excellent depth in software development with 5+ years experience",
+            impact: "High",
+            icon: <Award className="h-4 w-4" />,
+          },
+          {
+            title: "Quantified Achievements",
+            description: "Good use of metrics and numbers to demonstrate impact",
+            impact: "High",
+            icon: <BarChart3 className="h-4 w-4" />,
+          },
+          {
+            title: "Relevant Education",
+            description: "Computer Science degree aligns well with career path",
+            impact: "Medium",
+            icon: <CheckCircle className="h-4 w-4" />,
+          },
+          {
+            title: "Modern Tech Stack",
+            description: "Experience with current technologies like React, Node.js",
+            impact: "High",
+            icon: <Zap className="h-4 w-4" />,
+          },
+        ],
+        improvements: [
+          {
+            title: "Add Leadership Experience",
+            description: "Include examples of leading projects or mentoring team members",
+            priority: "High",
+            impact: "+8 points",
+            icon: <Users className="h-4 w-4" />,
+          },
+          {
+            title: "Industry Certifications",
+            description: "Consider AWS, Google Cloud, or other relevant certifications",
+            priority: "Medium",
+            impact: "+5 points",
+            icon: <Award className="h-4 w-4" />,
+          },
+          {
+            title: "Open Source Contributions",
+            description: "Showcase GitHub projects and community involvement",
+            priority: "Medium",
+            impact: "+4 points",
+            icon: <FileText className="h-4 w-4" />,
+          },
+          {
+            title: "Professional Summary Enhancement",
+            description: "Strengthen your professional summary with more impact",
+            priority: "Low",
+            impact: "+3 points",
+            icon: <Target className="h-4 w-4" />,
+          },
+        ],
+        marketComparison: [
+          { role: "Software Engineer", percentile: 78, salary: "$85k - $105k" },
+          { role: "Senior Software Engineer", percentile: 65, salary: "$95k - $130k" },
+          { role: "Full Stack Developer", percentile: 82, salary: "$80k - $110k" },
+          { role: "Technical Lead", percentile: 45, salary: "$110k - $150k" },
+        ],
+      });
+      setStep("result");
+    } catch (e) {
+      setError("There was an error analyzing your resume.");
+      setStep("upload");
+    }
+  };
 
-  const categoryScores = [
-    { name: "Experience", score: 85, trend: "up", change: "+5" },
-    { name: "Skills", score: 72, trend: "up", change: "+8" },
-    { name: "Education", score: 90, trend: "neutral", change: "0" },
-    { name: "Achievements", score: 68, trend: "down", change: "-2" },
-    { name: "Format & Structure", score: 82, trend: "up", change: "+3" },
-    { name: "Keywords", score: 75, trend: "up", change: "+12" },
-  ]
-
-  const strengths = [
-    {
-      title: "Strong Technical Background",
-      description: "Excellent depth in software development with 5+ years experience",
-      impact: "High",
-      icon: <Award className="h-4 w-4" />,
-    },
-    {
-      title: "Quantified Achievements",
-      description: "Good use of metrics and numbers to demonstrate impact",
-      impact: "High",
-      icon: <BarChart3 className="h-4 w-4" />,
-    },
-    {
-      title: "Relevant Education",
-      description: "Computer Science degree aligns well with career path",
-      impact: "Medium",
-      icon: <CheckCircle className="h-4 w-4" />,
-    },
-    {
-      title: "Modern Tech Stack",
-      description: "Experience with current technologies like React, Node.js",
-      impact: "High",
-      icon: <Zap className="h-4 w-4" />,
-    },
-  ]
-
-  const improvements = [
-    {
-      title: "Add Leadership Experience",
-      description: "Include examples of leading projects or mentoring team members",
-      priority: "High",
-      impact: "+8 points",
-      icon: <Users className="h-4 w-4" />,
-    },
-    {
-      title: "Industry Certifications",
-      description: "Consider AWS, Google Cloud, or other relevant certifications",
-      priority: "Medium",
-      impact: "+5 points",
-      icon: <Award className="h-4 w-4" />,
-    },
-    {
-      title: "Open Source Contributions",
-      description: "Showcase GitHub projects and community involvement",
-      priority: "Medium",
-      impact: "+4 points",
-      icon: <FileText className="h-4 w-4" />,
-    },
-    {
-      title: "Professional Summary Enhancement",
-      description: "Strengthen your professional summary with more impact",
-      priority: "Low",
-      impact: "+3 points",
-      icon: <Target className="h-4 w-4" />,
-    },
-  ]
-
-  const marketComparison = [
-    { role: "Software Engineer", percentile: 78, salary: "$85k - $105k" },
-    { role: "Senior Software Engineer", percentile: 65, salary: "$95k - $130k" },
-    { role: "Full Stack Developer", percentile: 82, salary: "$80k - $110k" },
-    { role: "Technical Lead", percentile: 45, salary: "$110k - $150k" },
-  ]
+  useEffect(() => {
+    if (resumeText) {
+      analyzeResume(resumeText);
+    }
+    // eslint-disable-next-line
+  }, [resumeText]);
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
@@ -137,6 +290,35 @@ export function ResumeAnalyzerApp() {
     }
   }
 
+  if (step === "upload") {
+    return (
+      <div className="max-w-lg mx-auto mt-10">
+        <ResumeUploader setResumeText={setResumeText} setIsLoading={() => {}} />
+        {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
+      </div>
+    );
+  }
+
+  if (step === "analyzing") {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[300px]">
+        <RefreshCw className="h-10 w-10 animate-spin text-purple-500 mb-4" />
+        <p className="text-lg font-medium text-gray-700 dark:text-gray-300">Analyzing your resume...</p>
+      </div>
+    );
+  }
+
+  // "result" step
+  const {
+    overallScore,
+    marketValue,
+    industryPercentile,
+    categoryScores,
+    strengths,
+    improvements,
+    marketComparison,
+  } = analysis;
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -147,20 +329,11 @@ export function ResumeAnalyzerApp() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" onClick={handleAnalyze} disabled={isAnalyzing}>
-            {isAnalyzing ? (
-              <>
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              <>
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Re-analyze
-              </>
-            )}
+          <Button variant="outline" onClick={() => analyzeResume(resumeText)}>
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Re-analyze
           </Button>
-          <Button className="bg-purple-500 hover:bg-purple-600">
+          <Button className="bg-purple-500 hover:bg-purple-600" onClick={() => setStep("upload")}>
             <Upload className="h-4 w-4 mr-2" />
             Upload New Resume
           </Button>
@@ -262,7 +435,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {categoryScores.map((category, index) => (
+                {categoryScores.map((category: any, index: number) => (
                   <div key={index} className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="font-medium text-gray-900 dark:text-white">{category.name}</span>
@@ -290,7 +463,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {strengths.map((strength, index) => (
+                {strengths.map((strength: any, index: number) => (
                   <div
                     key={index}
                     className="border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 rounded-lg p-4"
@@ -330,7 +503,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {improvements.map((improvement, index) => (
+                {improvements.map((improvement: any, index: number) => (
                   <div
                     key={index}
                     className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
@@ -372,7 +545,7 @@ export function ResumeAnalyzerApp() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {marketComparison.map((role, index) => (
+                {marketComparison.map((role: any, index: number) => (
                   <div
                     key={index}
                     className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
@@ -445,5 +618,5 @@ export function ResumeAnalyzerApp() {
         </Button>
       </div>
     </div>
-  )
+  );
 }
